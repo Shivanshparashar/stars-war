@@ -1,10 +1,47 @@
+/* General App container */
 .App {
   text-align: center;
+  background: linear-gradient(135deg, #000000, #0a0a1f, #001f3f, #0a0a1f); /* deep space gradient */
+  min-height: 100vh;
+  color: #ffffff;
+  font-family: 'Orbitron', sans-serif; /* futuristic sci-fi font */
+  padding: 2rem;
+  overflow-x: hidden;
+  position: relative;
 }
 
+/* Sparkling stars animation */
+.App::before {
+  content: '';
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  background: transparent url('https://i.ibb.co/7QpKsCX/starfield.png') repeat;
+  animation: starsMove 120s linear infinite;
+  z-index: 0;
+  opacity: 0.5;
+}
+
+/* Header */
+.App-header {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(12px + 3vmin);
+  color: #00f3ff; /* sparkling blue */
+  text-shadow: 0 0 5px #00f3ff, 0 0 15px #00c0ff, 0 0 25px #00a0ff, 0 0 40px #0077ff;
+  margin-bottom: 2rem;
+  letter-spacing: 1px;
+}
+
+/* Logo */
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+  filter: drop-shadow(0 0 15px #00f3ff) drop-shadow(0 0 30px #00c0ff);
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -13,26 +50,70 @@
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
+/* Links */
 .App-link {
   color: #61dafb;
+  text-decoration: none;
+  transition: all 0.3s ease;
 }
 
+.App-link:hover {
+  text-shadow: 0 0 10px #00f3ff, 0 0 20px #00c0ff, 0 0 40px #0077ff;
+  transform: scale(1.1);
+}
+
+/* Logout Button */
+button {
+  background-color: #ff4c4c; /* bright red */
+  color: #fff;
+  border: none;
+  padding: 0.7rem 1.5rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border-radius: 0.75rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 15px #ff4c4c, 0 0 30px #ff1c1c, 0 0 50px #ff4c4c;
+  text-transform: uppercase;
+}
+
+button:hover {
+  background-color: #ff1c1c;
+  box-shadow: 0 0 30px #ff4c4c, 0 0 60px #ff1c1c, 0 0 100px #ff4c4c;
+  transform: scale(1.05);
+}
+
+/* Cards container */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* "No Result Found" text */
+.no-result {
+  color: #00f3ff;
+  font-size: 1.75rem;
+  margin-top: 3rem;
+  text-shadow: 0 0 10px #00f3ff, 0 0 25px #00c0ff, 0 0 50px #0077ff;
+  animation: glow 1.5s ease-in-out infinite alternate;
+}
+
+/* Animations */
 @keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes glow {
+  from { text-shadow: 0 0 10px #00f3ff, 0 0 25px #00c0ff; }
+  to { text-shadow: 0 0 20px #00f3ff, 0 0 50px #00c0ff, 0 0 80px #0077ff; }
+}
+
+@keyframes starsMove {
+  from { transform: translate(0, 0); }
+  to { transform: translate(-50%, -50%); }
 }

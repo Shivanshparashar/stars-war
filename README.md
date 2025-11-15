@@ -1,46 +1,74 @@
-# Getting Started with Create React App
+# Star Wars Characters App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A React-based web application for browsing Star Wars characters using the SWAPI (Star Wars API). Features include user authentication, search, filtering, pagination, and detailed character views.
 
-## Available Scripts
+## How to Run the Project
 
-In the project directory, you can run:
+### Prerequisites
+- Node.js (version 14 or higher)
+- npm or yarn
 
-### `npm start`
+### Installation
+1. Clone the repository or download the project files.
+2. Navigate to the project directory: `cd star-wars-app`
+3. Install dependencies: `npm install`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Running the App
+- Ensure dependencies are installed: `npm install`
+- Start the development server: `npm start`
+- Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### Building for Production
+- Build the app: `npm run build`
+- The build artifacts will be stored in the `build/` directory.
 
-### `npm test`
+### Testing
+- Run tests: `npm test`
+- Run specific test file: `npm test -- --testPathPattern=CharacterModal.test.tsx --watchAll=false`
+- The `CharacterModal.test.tsx` file contains integration tests for the CharacterModal component, verifying it renders character details correctly, handles loading states, and responds to user interactions like closing the modal. It uses React Testing Library to simulate user behavior and ensure the component functions as expected in a browser-like environment.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## What I Implemented
 
-### `npm run build`
+### Core Features
+- **Authentication**: Mock login system (username: `admin`, password: `password`). Stores token in localStorage with auto-refresh every 5 minutes.
+- **Character Listing**: Fetches and displays Star Wars characters from SWAPI with pagination.
+- **Search**: Real-time search by character name.
+- **Filters**: Filter by homeworld, film, and species (client-side filtering due to SWAPI limitations).
+- **Pagination**: Navigate through pages of characters.
+- **Character Details**: Click on a character card to view detailed information in a modal, including homeworld details fetched on demand.
+- **Responsive Design**: Uses Tailwind CSS for styling, with a Star Wars-themed background image and animations.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Components
+- `LoginForm`: Handles user login.
+- `CharacterCard`: Displays character summary.
+- `CharacterModal`: Shows detailed character info.
+- `SearchAndFilters`: Search input and filter dropdowns.
+- `Pagination`: Page navigation controls.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Hooks
+- `useAuth`: Manages authentication state.
+- `useCharacters`: Handles character fetching, filtering, and pagination.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Bonus Features
+- Gradient animated title.
+- Hover effects and transitions on buttons/cards.
+- Logout functionality.
+- Loading states and error handling.
+- No results message when search/filters yield nothing.
 
-### `npm run eject`
+## Trade-offs and Design Choices
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Trade-offs
+- **Client-side Filtering**: Filters (homeworld, film, species) are applied client-side after fetching data, as SWAPI does not support advanced query parameters. This may not scale well for large datasets but is sufficient for this demo.
+- **Mock Authentication**: Uses a simple mock auth system instead of a real backend for simplicity. In production, integrate with a proper auth service.
+- **No Caching**: Data is fetched on every page change/search. Could add caching for better performance.
+- **Limited Error Handling**: Basic error messages; could be expanded with more user-friendly notifications.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Design Choices
+- **React Hooks**: Used custom hooks for state management to keep components clean and reusable.
+- **TypeScript**: Ensures type safety and better development experience.
+- **Tailwind CSS**: For rapid UI development and consistent styling.
+- **SWAPI Integration**: Leverages a free, public API for data, avoiding the need for a backend.
+- **Component Structure**: Modular components for maintainability.
+- **Background Image**: Used star or galaxy image as background color or theme.
+- **Pagination**: Simple page-based navigation; could be enhanced with infinite scroll if needed.
